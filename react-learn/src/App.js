@@ -1,30 +1,13 @@
 
-import src1 from './assets/1.jpg'
-import src2 from './assets/2.jpg'
-import src3 from './assets/3.jpg'
-
-const srcArr = [src1,src2,src3];
-
-let index = 0;//显示的图片索引
-
-function render() {
-  return (
-      <img src={srcArr[index]} alt=""/>
-  );
-}
-
-function start() {
-  setInterval(() => {
-    console.log(index);
-    index = (index + 1 ) % 3;
-    render();
-  }, 2000);
-}
+import  MyFuncComp from './MyFuncComp'
+import MyClassComp from './MyClassComp'
 
 function App() {
   return (
     <div className="App">
-      {render()}
+      <MyClassComp number='5' obj={{name:'你难道',age:12}}>></MyClassComp>
+      <MyFuncComp number='3'></MyFuncComp>
+      <MyFuncComp number='3' ui={<h1>ui</h1>}></MyFuncComp>
     </div>
   );
 }
