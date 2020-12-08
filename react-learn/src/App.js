@@ -1,13 +1,27 @@
+import Student from './components/Student'
+var appkey = 'demo13_1545210570249';
+// var appkey = 'yuanzhicheng_1563606632795';
+var baseurl = 'http://open.duyiedu.com';
 
-import  MyFuncComp from './MyFuncComp'
-import MyClassComp from './MyClassComp'
+/**
+ * 获取所有学生数据
+ */
+
+async function fetchAllStudents() {
+    var stus = await fetch(`${baseurl}/api/student/findAll?appkey=${appkey}`)
+        .then(resp => resp.json()).then(resp => resp.data)
+    console.log(stus)
+    return stus;
+}
+
 
 function App() {
+const stus = fetchAllStudents();//获取学生数组
+console.log(stus);
+// const content = stus.map(item => <Student {...item}></Student>)
+
   return (
     <div className="App">
-      <MyClassComp number='5' obj={{name:'你难道',age:12}}>></MyClassComp>
-      <MyFuncComp number='3'></MyFuncComp>
-      <MyFuncComp number='3' ui={<h1>ui</h1>}></MyFuncComp>
     </div>
   );
 }
