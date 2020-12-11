@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BallList from './components/BallList'
+import MyCom from './MyCom';
+import TickControl from './TickControl'
 
-let num = 10;
-ReactDOM.render(<BallList />,document.getElementById('root'));
+function handleClick() {
+    console.log('点击了')
+}
+
+const btn = <button onClick={handleClick}>点击</button>
+
+ReactDOM.render(<TickControl></TickControl>,document.getElementById('root'));
 
