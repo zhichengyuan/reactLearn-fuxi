@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Test from './components/Test'
+import Comp from './Comp'
 
-ReactDOM.render(<Test/>,document.getElementById('root'));
+ReactDOM.render(<Comp/>,document.getElementById('root'));
 
