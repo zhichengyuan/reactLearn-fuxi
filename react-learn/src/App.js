@@ -1,31 +1,27 @@
-import Student from './components/Student'
-var appkey = 'demo13_1545210570249';
-// var appkey = 'yuanzhicheng_1563606632795';
-var baseurl = 'http://open.duyiedu.com';
+import React, { Component } from 'react'
+import NewLifeCycle from './NewLifeCycle'
 
-/**
- * 获取所有学生数据
- */
-
-async function fetchAllStudents() {
-    var stus = await fetch(`${baseurl}/api/student/findAll?appkey=${appkey}`)
-        .then(resp => resp.json()).then(resp => resp.data)
-    console.log(stus)
-    return stus;
+export default class App extends Component {
+  state = {
+    number:1,
+  }
+  
+  render() {
+    
+    return (
+      <div>
+        <NewLifeCycle n={this.state.number}/>
+        <p>
+           
+            <button onClick={() => {
+              this.setState({
+                number:this.state.number + 1
+              })
+            }}>
+              父组件按钮+1
+            </button>
+        </p>
+      </div>
+    )
+  }
 }
-
-
-function App() {
-const stus = fetchAllStudents();//获取学生数组
-console.log(stus);
-// const content = stus.map(item => <Student {...item}></Student>)
-
-  return (
-    <div className="App">
-    </div>
-  );
-}
-
-
-
-export default App;
