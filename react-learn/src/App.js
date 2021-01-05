@@ -1,27 +1,20 @@
 import React, { Component } from 'react'
-import NewLifeCycle from './NewLifeCycle'
-
+import Comp from './Comp'
 export default class App extends Component {
-  state = {
-    number:1,
-  }
-  
+ 
   render() {
     
     return (
       <div>
-        <NewLifeCycle n={this.state.number}/>
-        <p>
-           
-            <button onClick={() => {
-              this.setState({
-                number:this.state.number + 1
-              })
-            }}>
-              父组件按钮+1
-            </button>
-        </p>
+        <Comp html={<h1>的事发生飞洒发</h1>}>
+          <h2>children</h2>
+        </Comp>
+        <Comp >
+          <h2>children</h2>
+        </Comp>
+        
       </div>
+      
     )
   }
 }
