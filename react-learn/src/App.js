@@ -1,18 +1,30 @@
 import React, { Component } from 'react'
-import Comp from './Comp'
+import TreeLayout from './components/common/ThreeLayout'
 export default class App extends Component {
  
   render() {
     
     return (
       <div>
-        <Comp html={<h1>的事发生飞洒发</h1>}>
-          <h2>children</h2>
-        </Comp>
-        <Comp >
-          <h2>children</h2>
-        </Comp>
-        
+        <TreeLayout
+          gap={20}
+          left={<div style={{
+            border:'2px solid #008c8c'
+          }}>左边栏</div>}
+          right={
+            <div style={{
+              border:'1px solid red'
+            }}>
+              右边栏
+            </div>
+          }
+        >
+          <div style={{
+            border:'2px solid red'
+          }}>
+            主区域
+          </div>
+        </TreeLayout>
       </div>
       
     )
