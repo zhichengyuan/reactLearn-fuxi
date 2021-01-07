@@ -1,0 +1,46 @@
+import React, { Component } from 'react'
+
+/**
+ * 一组多选框
+ */
+export default class index extends Component {
+    
+    handleChange= e => {
+        let val = e.target.value;//读取表单的值
+        let newArr;
+        if(e.target.type ==='checkbox') {
+            //对val进行特殊处理
+            if(e.target.checked) {
+                newArr = [...this.props.chooseDatas,val];
+            }else {
+                newArr = this.props.chooseDatas.filter(it => it !==val)
+            }
+        }
+        this.props.onChange && this.props.onChange(newArr,this.props.name,e)
+    }
+    /**
+     * 得到一组多选框
+     */
+    getCheckBox(){
+        return this.props.datas.map(it => (
+            <label key={it.value}>
+                <input 
+                type="checkbox" 
+                name={this.props.name}
+                value={it.value}
+                checked={this.props.chooseDatas.includes(it.value)}
+                onChange={this.handleChange}
+                />
+                {it.text}
+            </label>
+        ))
+    }
+    render() {
+        const bs = this.getCheckBox();
+        return (
+            <div>
+                {bs}
+            </div>
+        )
+    }
+}
