@@ -27,7 +27,7 @@ export default class FormTest extends Component {
                 val = this.state.chooseLoves.filter(it => it !==val)
             }
         }
-        this.setState({
+        this.setState({   
             [name]:val
         })
     }
