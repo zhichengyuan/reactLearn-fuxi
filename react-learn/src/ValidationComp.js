@@ -14,11 +14,14 @@ class ValidationComp extends Component {
         b:PropTypes.bool.isRequired,//必须是bool并且必填
         onClick:PropTypes.func,//必须是函数
         c:PropTypes.any,//1.可以设置必填 2.队列保持整齐（所有属性都在该对象中）
+        d:PropTypes.node.isRequired,//1.可以设置必填 2.队列保持整齐（所有属性都在该对象中）
+        e:PropTypes.element,//e必须是一个React元素
+        f:PropTypes.elementType,//必须是一个组件类型
     }
     render() {
         return (
             <div>
-                {this.props.a} 
+                {this.props.a} {this.props.d}
             </div>
         );
     }

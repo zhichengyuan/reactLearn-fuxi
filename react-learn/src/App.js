@@ -8,7 +8,7 @@ export default class App extends Component {
     
     return (
       <div>
-        <ValidationComp a={1} b/>
+        <ValidationComp a={1} b d={<p>node</p>}/>
       </div>
       
     )
