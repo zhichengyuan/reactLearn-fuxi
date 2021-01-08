@@ -6,7 +6,6 @@ class ClassDefault extends Component {
         b:2,
         c:3,
         d:4,
-        e:5,
     }
     constructor(props) {
         super(props);
