@@ -4,7 +4,8 @@ class ClassDefault extends Component {
     static defaultProps = {
         a:1,
         b:2,
-        c:3
+        c:3,
+        d:4,
     }
     constructor(props) {
         super(props);
