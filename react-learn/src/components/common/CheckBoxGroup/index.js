@@ -1,10 +1,27 @@
 import React, { Component } from 'react'
+import types from '../../../utils/commonTypes'
+import PropTypes from 'prop-types'
 
 /**
  * 一组多选框
  */
 export default class index extends Component {
     
+    /**
+     * 默认属性
+     */
+    static defaulProps = {
+        datas:[],
+        chooseDatas:[]
+    }
+
+    static propTypes = {
+        datas: types.groupDatas,
+        name:PropTypes.string.isRequired,
+        chooseDatas:types.chooseDatas,
+        onChange:types.onChange
+    }
+
     handleChange= e => {
         let val = e.target.value;//读取表单的值
         let newArr;

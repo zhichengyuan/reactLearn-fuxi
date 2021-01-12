@@ -10,7 +10,7 @@ export default class Test extends Component {
             {value:'movie',text:'电影'},
         ],
         name:'lovess',
-        choose:''
+        chooseData:''
     }
     async componentDidMount(){
         const stus = await getAllStudents();
@@ -24,7 +24,7 @@ export default class Test extends Component {
                 <Select {...this.state}
                 onChange={newArr => {
                     this.setState({
-                        choose:newArr
+                        chooseData:newArr
                     })
                 }}
                 />
