@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import {A,B} from './components/Comps'
 import withLogin from './HOC/withLogin'
+import withLog from './HOC/withLog'
 
-const ALog = withLogin(A)
-const BLog = withLogin(B)
+let AComp = withLogin(withLog(A,'dsds'))
+let BComp = withLogin(withLog(B,'fsss'))
 export default class App extends Component {
   render() {
     return (
       <div>
-        <ALog isLogin a={1}/>
-        <BLog isLogin b={2}/>
+        <AComp isLogin a={1}/>
+        <BComp isLogin b={2}/>
       </div>
       
     )
