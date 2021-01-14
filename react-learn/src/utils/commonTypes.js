@@ -8,4 +8,8 @@ export default {
     })),//多选框组、单选框组、下拉列表的数据源
     chooseDatas:PropTypes.arrayOf(PropTypes.string),
     onChange:PropTypes.func,
+    singleData:PropTypes.shape({
+        value:PropTypes.string.isRequired,
+        text:PropTypes.string.isRequired
+    })
 }
