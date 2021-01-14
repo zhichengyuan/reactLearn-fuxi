@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
-import {A,B} from './components/Comps'
-import withLogin from './HOC/withLogin'
-import withLog from './HOC/withLog'
+// import Test from './components/common/CheckBoxGroup/Test'
+// import Test from './components/common/RadioBoxGroup/Test'
+import Test from './components/common/Select/Test'
 
-let AComp = withLogin(withLog(A,'dsds'))
-let BComp = withLogin(withLog(B,'fsss'))
+
 export default class App extends Component {
   render() {
     return (
       <div>
-        <AComp isLogin a={1}/>
-        <BComp isLogin b={2}/>
+        <Test/>
       </div>
       
     )

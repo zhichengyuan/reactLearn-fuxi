@@ -1,53 +1,37 @@
 import React, { Component } from 'react'
 import types from '../../../utils/commonTypes'
 import PropTypes from 'prop-types'
-/**
- * 一组单选框
- */
-export default class RadioBoxGroup extends Component {
+import withDataGroup from '../hoc/withDataGroup'
 
-    /**
-     * 默认属性
-     */
-    static defaulProps = {
-        datas:[],
-        chooseData:''
-    }
 
+class Radio extends Component {
     static propTypes = {
-        datas: types.groupDatas,
         name:PropTypes.string.isRequired,
-        chooseData:PropTypes.string.isRequired,
-        onChange:types.onChange
+        info:types.singleData.isRequired,//当前单选框的value
+        value:PropTypes.string.isRequired,//当前选中的value值
+        onChange:PropTypes.func
     }
-    
     handleChange= e => {
         let newValue = e.target.value;//读取表单的值
-        this.props.onChange && this.props.onChange(newValue,this.props.name,e)
+        this.props.onChange && this.props.onChange(newValue)
     }
-    /**
-     * 得到一组多选框
-     */
-    getRadioBox(){
-        return this.props.datas.map(it => (
-            <label key={it.value}>
+    render(){
+        return (
+            <label>
                 <input 
                 type="radio" 
                 name={this.props.name}
-                value={it.value}
-                checked={this.props.chooseData === it.value}
+                value={this.props.info.value}
+                checked={this.props.value === this.props.info.value}
                 onChange={this.handleChange}
                 />
-                {it.text}
+                {this.props.info.text}
             </label>
-        ))
-    }
-    render() {
-        const bs = this.getRadioBox();
-        return (
-            <div>
-                {bs}
-            </div>
         )
     }
 }
+
+/**
+ * 一组单选框
+ */
+export default withDataGroup(Radio)
