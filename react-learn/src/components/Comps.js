@@ -1,14 +1,54 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-export class A extends Component {
-    //不再关注该组件不相关的事情
-    render() {
-    return <h1>A{this.props.a}</h1>
+class A extends Component {
+    method(){
+        console.log('调用了组件A的方法')
+    }
+
+    render(){
+        return <h1>组件A</h1>
     }
 }
-export class B extends Component {
-    //不再关注该组件不相关的事情
+
+
+
+class Comps extends Component {
+    constructor(props) {
+        super(props);
+        this.txt = React.createRef();
+    }
+
+    state = {
+        show:true
+    }
+    handleClick = () => {
+        // console.log(this)
+        this.setState({
+            show:!this.state.show
+        })
+        // this.tet.focus()
+        // this.txt.current.focus();
+        // this.refs.compA.method()
+    }
+    componentDidMount(){
+        console.log(this.txt)
+    }
+    getRef = el => {
+        console.log('函数被调用',el)
+        this.tet = el
+    }
     render() {
-        return <h1>B{this.props.b}</h1>
+        return (
+            <div>
+                {
+                    this.state.show && <><input type="text" ref={this.txt}/>
+                    <input type="text" ref={this.getRef}/></>
+                }
+                
+                <button onClick={this.handleClick}>显示/隐藏</button>
+            </div>
+        );
     }
 }
+
+export default Comps;
