@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
-import withLog from './HOC/withLog'
+// import Banner from './components/common/Banner/Test'
 
 class A extends Component {
   render() {
-    return <h1>组件A{this.props.a}</h1>
+    return <h1 ref={this.props.ref1}>
+    组件A
+      s<span>{this.props.words}</span>
+    </h1>
   }
 }
 
-let AComp = withLog(A);
 
-
+//传递函数组件A，得到一个新的组NewA
+// const NewA = React.forwardRef(A)
 export default class App extends Component {
   ARef = React.createRef();
   componentDidMount() {
@@ -18,8 +21,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        ddd
-        <AComp str='1212' a={'dssss'}/> 
+        <A ref1={this.ARef} words="dddd"/>
       </div>
       
     )
