@@ -1,20 +1,42 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import ErrorBound from './components/common/ErrorBound'
 
-function ChildA(){
-    return ReactDOM.createPortal(<div className="child-a" style={{
-        marginTop:200
+function Comp1() {
+    return <div style={{
+        width:"90%",
+        height:500,
+        border:"2px solid"
     }}>
-        <h1>1</h1>
-    <ChildB/>
-</div>,document.querySelector('.modal'))
-}
-function ChildB() {
-    return <div className="child-b">
-        <h1>2</h1>
+        <h1>Comp1</h1>
+        <Comp2></Comp2>
     </div>
 }
 
+function getDatas() {
+    return;
+}
+
+function Comp2() {
+    const datas = getDatas();
+    const spans = datas.map(it => <span>某一项</span>)
+    return <div style={{
+        width:"70%",
+        height:"70%",
+        border:"2px solid"
+    }}>
+        {spans}
+        <h1>Comp2</h1>
+    </div>
+}
+function Comp3() {
+    return <div style={{
+        width:"90%",
+        height:500,
+        border:"2px solid"
+    }}>
+        <h1>Comp3</h1>
+    </div>
+}
 export default class App extends Component {
     render() {
         return (
@@ -22,7 +44,11 @@ export default class App extends Component {
                 console.log('APP被点击了',e.target)
             }}>
                 <h1>APP</h1>
-                <ChildA/>
+                <ErrorBound>
+                    <Comp1/>
+                </ErrorBound>
+                
+                <Comp3/>
             </div>
         )
     }
