@@ -1,55 +1,31 @@
 import React, { Component } from 'react'
-import ErrorBound from './components/common/ErrorBound'
-
-function Comp1() {
-    return <div style={{
-        width:"90%",
-        height:500,
-        border:"2px solid"
-    }}>
-        <h1>Comp1</h1>
-        <Comp2></Comp2>
-    </div>
-}
-
-function getDatas() {
-    return;
-}
-
-function Comp2() {
-    const datas = getDatas();
-    const spans = datas.map(it => <span>某一项</span>)
-    return <div style={{
-        width:"70%",
-        height:"70%",
-        border:"2px solid"
-    }}>
-        {spans}
-        <h1>Comp2</h1>
-    </div>
-}
-function Comp3() {
-    return <div style={{
-        width:"90%",
-        height:500,
-        border:"2px solid"
-    }}>
-        <h1>Comp3</h1>
-    </div>
-}
+var prev
 export default class App extends Component {
     render() {
         return (
-            <div className="app" onClick={(e) => {
-                console.log('APP被点击了',e.target)
+            <div onClick={(e) => {
+                console.log(prev === e);
+                console.log('react div被点击了')
             }}>
-                <h1>APP</h1>
-                <ErrorBound>
-                    <Comp1/>
-                </ErrorBound>
-                
-                <Comp3/>
+                <button onClick={(e) => {
+                    console.log("react:按钮被点击了");
+                    prev = e;
+                    // e.persist();
+                    setTimeout(() => {
+                        console.log(e.type);
+                    },0)
+                    // console.log(e.nativeEvent)
+                    // e.nativeEvent.stopImmediatePropagation()
+                    // console.log(e.isPropagationStopped());
+                    // e.stopPropagation();
+                    // console.log(e.isPropagationStopped());
+                }}>按钮</button>
             </div>
         )
     }
 }
+
+// document.querySelector("#root").onclick = function(e) {
+//     console.log('真实的dom事件：id为root的div被点击了');
+//     e.stopPropagation();
+// }
