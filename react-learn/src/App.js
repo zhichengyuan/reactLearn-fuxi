@@ -1,63 +1,23 @@
-import React, { Component } from 'react'
-import {getAllStudents} from './services/student'
+import React,{useState} from  'react'
 
-class StudentList extends Component {
-    render() {
-        const stus = this.props.stuList.map(it => <Student key={it.id} name={it.name} age={it.age} address={it.address}/>)
-        return (
-            <ul>
-                {stus}
-            </ul>
-        );
-    }
+export default function App() {
+    
+    const [n,setN] = useState(0);//使用一个状态，该状态的默认值是0
+    return <div>
+        <p >
+            <button onClick={() => {
+                setN(n - 1);
+                setN(n - 1);
+            }}>-</button>
+            <span>{n}</span>
+            <button onClick={() => {
+                // setN(n + 1);//不会立即改变，事件运行完成之后一起改变
+                // setN(n + 1);//此时，n的值任然是0
+                
+                setN(prevN => prevN + 1);// 传入的函数，在事件完成之后统一运行
+                setN(prevN => prevN + 1);
+            }}>+</button>
+        </p>
+      
+    </div>
 }
-
-class Student extends Component {
-    render() {
-        return <li>
-                <span>{this.props.name}</span>
-                <span>{this.props.age}</span>
-                <span>{this.props.address}</span>
-            </li>
-    }
-}
-
-export default class App extends Component {
-
-    state = {
-        stuList:[]
-    }
-
-    loadStudents = async () => {
-        const stus = await getAllStudents();
-        this.setState({
-            stuList:stus
-        })
-    }
-
-    render() {
-        return (
-            <div>
-                {/* 显示学生集合 */}
-                <button onClick={this.loadStudents}>加载学生数据</button>
-                <button onClick={() => {
-                    this.setState({
-                        stuList:[]
-                    })
-                }}>清空数据</button>
-                <button onClick={() => {
-                    this.setState({
-                        stuList:this.state.stuList.sort(() => Math.random() - 0.5)
-                    })
-                }}>打乱顺序</button>
-
-                <StudentList stuList={this.state.stuList}/>
-            </div>
-        )
-    }
-}
-
-// document.querySelector("#root").onclick = function(e) {
-//     console.log('真实的dom事件：id为root的div被点击了');
-//     e.stopPropagation();
-// }
