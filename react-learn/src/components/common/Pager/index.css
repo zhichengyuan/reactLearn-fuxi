@@ -1,0 +1,22 @@
+.item{
+    display: inline-block;
+    padding:6px 10px;
+    border:1px solid #ccc;
+    margin: 2;
+    color:blue;
+    cursor: pointer;
+}
+
+.item.disabled{
+    color: #ccc;
+    cursor: not-allowed;
+}
+.current{
+    margin-left: 10px;
+}
+
+.active{
+    border: none;
+    color:#f40;
+    cursor: auto;
+}

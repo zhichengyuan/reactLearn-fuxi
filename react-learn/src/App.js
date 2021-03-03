@@ -1,20 +1,8 @@
-import React,{useState,useEffect} from  'react'
-
-
-
+import React from  'react'
+import StudentContainer from './components/StudentContainer'
 export default function App() {
-    const [n, setN] = useState(10)
-    useEffect(() => {
-        setTimeout(() => {
-            console.log(n);//n指向，当前App函数调用时的n
-        },5000)
-    })
+   
     return <div>
-        <div>
-            <h1>{n}</h1>
-            <button onClick={() => {
-                setN(n + 1)
-            }}>n+1</button>
-        </div>
+        <StudentContainer/>
     </div>
 }
