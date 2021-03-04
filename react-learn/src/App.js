@@ -1,19 +1,21 @@
-import React from  'react'
-import StudentContainer from './components/StudentContainer'
-import useAllStudents from './myHooks/useAllStudents'
+import React,{useState} from  'react'
+import useTimer from './myHooks/useTimer'
 
 function Test() {
-    const stus = useAllStudents();
-    console.log(stus);
-const list = stus.map(it => <li key={it.id}>{it.name}</li>)
-return <ul>
-    {list}
-</ul>
+    
+    let res = useTimer(10,1000);
+    // console.log(res);
+    return <h1>倒计时{res}</h1>
 }
 
 export default function App() {
+    const [show, setShow] = useState(true)
     return <div>
-        <Test/>
-        {/* <StudentContainer/> */}
+        {
+            show && <Test/>
+        }
+        <button onClick={() => {
+            setShow(!show)
+        }}>显示/隐藏</button>
     </div>
 }

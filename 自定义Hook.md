@@ -12,3 +12,6 @@ Effect Hook：useEffect
 例如：
 
 1. 很多组件都需要在第一次加载完成后，获取学生数据
+2. 很多组件都需要在第一次加载完成后，启动一个计时器，然后在组件销毁时卸载
+
+> 使用HOOK的时候，如果没有严格按照Hook的规则进行，eslint的一个插件（eslint-plugin-react-hooks）会报出警告
