@@ -1,37 +1,23 @@
 // import React,{useReducer} from  'react'
-import React from  'react'
-import useReducer from './useReducer'
+import React,{useContext} from  'react'
 
-/**
- * 该函数，根据当前的数据，以及action，生成一个新的数据
- * @param {} state 
- * @param {*} action 
- */
-function reducer(state,action) {
-    switch(action.type) {
-        case "increase":
-            return state + 1;
-        case "decrease":
-            if(state === 0) {
-                return 0
-            }
-            return state - 1
-        default:
-            return state;
-    }
+const ctx = React.createContext();
+
+function Text(){
+    return <ctx.Consumer>
+        {value => <h1>Test,上下文的值：{value}</h1>}
+    </ctx.Consumer>
+}
+function Text1(){
+    const value = useContext(ctx);
+    return <h1>Test,上下文的值：{value}</h1>
 }
 
-
-
 export default function App() {
-    const [n,dispatch] = useReducer(reducer,0);
     return <div>
-        <button onClick={() => {
-            dispatch({type:'decrease'})
-        }}>-</button> 
-        <span>{n}</span>
-        <button onClick={() => {
-            dispatch({type:'increase'})
-        }}>+</button> 
+        <ctx.Provider value="abc">
+            <Text/>
+            <Text1/>
+        </ctx.Provider>
     </div>
 }
