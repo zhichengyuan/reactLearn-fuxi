@@ -3,7 +3,6 @@ import React,{useState,useRef,useEffect} from  'react'
 
 export default function App() {
     // const inpRef = useRef();
-    const timerRef = useRef();
     const [n, setN] = useState(5);
     const nRef = useRef(n);//{current:10}
     useEffect(() => {
