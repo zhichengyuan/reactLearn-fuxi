@@ -1,10 +1,17 @@
 // import React,{useReducer} from  'react'
-import React,{useState,useLayoutEffect,useRef} from  'react'
+import React,{useState,useLayoutEffect,useRef,useDebugValue} from  'react'
 
+function useTest() {
+    const [stus, ] = useState([])
+    useDebugValue('学生集合')
+    return stus
+}
 
 export default function App() {
     const [n, setN] = useState(0);
+    useState('abc')
     const h1Ref = useRef();
+    useTest();
     useLayoutEffect(()=> {
         h1Ref.current.innerText = Math.random().toFixed(2);
     })
