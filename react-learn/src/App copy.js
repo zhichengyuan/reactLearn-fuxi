@@ -1,17 +1,22 @@
 // import React,{useReducer} from  'react'
-import React,{useState,useRef} from  'react'
+import React,{useState,useRef,useEffect} from  'react'
+
+class Test extends React.Component{
+    method() {
+        console.log('我被调用了')
+    }
+    render() {
+        return <h1>Test Component</h1>
+    }
+}
 
 export default function App() {
-    const inpRef = useRef()
-    const [n, setN] = useState(0)
+    const testRef = useRef();
     return <div>
-        <input type="text" ref={inpRef}/>
+        <Test ref={testRef}></Test>
         <button onClick={() => {
-            console.log(inpRef.current.value)
-        }}>得到值</button>  
-        <input type="number" value={n} onChange={(e) => {
-            setN(e.target.value)
-        }}/>      
+            testRef.current.method();
+        }}>点击调用Test组件的method方法</button>
     </div>
 }
 
