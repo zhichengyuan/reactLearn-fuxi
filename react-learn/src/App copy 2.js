@@ -3,19 +3,16 @@ import React,{useState} from  'react'
 import { CSSTransition } from 'react-transition-group';
 import './App.css'
 
-function MyTransition({show,children}) {
+function Comp1({show}) {
     return <CSSTransition mountOnEnter appear timeout={2000} in={show}>
-                {children}
+                <h1 className="title">组件1</h1>
             </CSSTransition>
 }
-
-function Comp1() {
-    return <h1 className="title">组件1</h1>
-}
-function Comp2() {
+function Comp2({show}) {
     // return <h1>组件2</h1>
-    return  <h1 className="title">组件2</h1>
-           
+    return <CSSTransition mountOnEnter appear timeout={2000} in={show}>
+                <h1 className="title">组件2</h1>
+            </CSSTransition>
 }
 
 export default function App() {
@@ -24,13 +21,8 @@ export default function App() {
       <div className="container">
           
           <div className="comp-container">
-              <MyTransition show={show}>
-                    <Comp1 ></Comp1>
-              </MyTransition>
-              <MyTransition show={show}>
-                    <Comp2 ></Comp2>
-              </MyTransition>
-            
+            <Comp1 show={show}></Comp1>
+            <Comp2 show={!show}></Comp2>
           </div>
           <button onClick={() => setShow(!show)}>按钮</button>
       </div>
