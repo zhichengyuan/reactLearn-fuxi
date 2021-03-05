@@ -5,19 +5,18 @@ export default function App() {
     // const inpRef = useRef();
     const timerRef = useRef();
     const [n, setN] = useState(5);
-    const nRef = useRef(n);//{current:10}
     useEffect(() => {
-        const timer = setInterval(() => {
-            nRef.current --;
-            setN(nRef.current);
-            if(nRef.current === 0) {
-                clearInterval(timer)
-            }
+        if(n===0) {
+            return
+        }
+        timerRef.current = setTimeout(() => {
+            console.log(n)
+            setN(n - 1)
         },1000)
         return () => {
-            clearTimeout(timer);
+            clearTimeout(timerRef.current);
         }
-    }, [])
+    }, [n])
     return <div>
         <h1>{n}</h1>   
     </div>
