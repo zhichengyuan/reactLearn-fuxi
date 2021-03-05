@@ -1,25 +1,55 @@
 // import React,{useReducer} from  'react'
-import React,{useState,useLayoutEffect,useRef,useDebugValue} from  'react'
+import React,{useState} from  'react'
+import './App.css'
 
-function useTest() {
-    const [stus, ] = useState([])
-    useDebugValue('学生集合')
-    return stus
+import { Transition } from 'react-transition-group';
+
+const duration = 2000;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out`,
+  opacity: 0,
 }
+
+const transitionStyles = {
+  entering: { opacity: 1 },
+  entered:  { opacity: 1 },
+  exiting:  { opacity: 0 },
+  exited:  { opacity: 0 },
+};
+
 
 export default function App() {
-    const [n, setN] = useState(0);
-    useState('abc')
-    const h1Ref = useRef();
-    useTest();
-    useLayoutEffect(()=> {
-        h1Ref.current.innerText = Math.random().toFixed(2);
-    })
-    return <div>
-        <h1 ref={h1Ref}>{n}</h1>
-        <button onClick={() => {
-            setN(n+1)
-        }}>n+1</button>
-    </div>
-}
-
+    const [inProp, setInProp] = useState(true);
+    return (
+      <div>
+        <Transition in={inProp} timeout={duration} appear
+            addEndListener={(node,done) => {
+                console.log(node,done);
+                node.addEventListener("transitionend",()=> {
+                    console.log('过渡结束了')
+                },{once:true})
+                // done()
+            }}
+        >
+            {state => {
+                console.log(state);
+                return <div className={state}>
+                    I'm a fade Transition!
+                </div>
+            }}
+        {/* {state => (
+            <div style={{
+                ...defaultStyle,
+                ...transitionStyles[state]
+            }}>
+                I'm a fade Transition!
+            </div>
+        )} */}
+        </Transition>
+        <button onClick={() => setInProp(!inProp)}>
+          Click to Enter
+        </button>
+      </div>
+    );
+  };
