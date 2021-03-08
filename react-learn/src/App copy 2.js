@@ -1,6 +1,5 @@
 // import React,{useReducer} from  'react'
 import React from  'react'
-import { SwitchTransition } from 'react-transition-group';
 import FadeTransition from './components/common/FadeTransition'
 
 class App extends React.Component {
@@ -10,12 +9,9 @@ class App extends React.Component {
 
     render() {
         return <div>
-            <SwitchTransition>
-                <FadeTransition timeout={1000} appear key={this.state.show}>
-                    <h1>{this.state.show?'显示':'隐藏'}</h1>
-                </FadeTransition>
-            </SwitchTransition>
-            
+            <FadeTransition appear timeout={1000} in={this.state.show}>
+                <h1>标题</h1>
+            </FadeTransition>
             <button onClick={() => {
                 this.setState({
                     show:!this.state.show

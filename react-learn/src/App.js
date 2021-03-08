@@ -1,39 +1,46 @@
 // import React,{useReducer} from  'react'
-import React,{useState} from  'react'
-import { CSSTransition,TransitionGroup } from 'react-transition-group';
-import "animate.css"
-import './App.css'
+import React from  'react'
+import { TransitionGroup } from 'react-transition-group';
+import FadeTransition from './components/common/FadeTransition'
 
+class App extends React.Component {
+    state ={
+        tasks:[
+            {id:1,name:'任务1'},
+            {id:2,name:'任务2'},
+            {id:3,name:'任务3'},
+        ]
+    }
 
-export default function App() {
-    const [show, setShow] = useState(true);
-    const [tasksList,setTasksList] = useState([
-        {id:2,name:'任务1'},
-        {id:3,name:'任务2'},
-    ])
-    return (
-      <div>
-          <div className="container">
-            <TransitionGroup appear component={null}>
-                {
-                    tasksList.map(t => (
-                        <CSSTransition timeout={2000} key={t.id}>
-                            <div>
-                                {t.name}
-                                <button onClick={() => {
-                                    var newTasks = tasksList.filter(it => it.id !== t.id);
-                                    setTasksList(newTasks)
-                                }}>删除</button>
-                            </div>
-                        </CSSTransition>
-                    ))
-                }
+    render() {
+        console.log(this.state.tasks);
+        
+        const list = this.state.tasks.map(t => (
+            <FadeTransition timeout={1000} appear key={t.id}>
+                <li>
+                    {t.name}
+                    <button onClick={() => {
+                        this.setState({
+                            tasks:this.state.tasks.filter(it => it.id !== t.id)
+                        })
+                    }}>删除</button>
+                </li>
+            </FadeTransition>
+        ))
+        console.log(list);
+        return <div>
+            <TransitionGroup component="ul">
+                {list}
             </TransitionGroup>
+            
+            <button onClick={() => {
+                var name = window.prompt('请输入任务名称');
+                this.setState({
+                    tasks:[...this.state.tasks,{id:name,name}]
+                })
+            }}>添加</button>
         </div>
-        <button onClick={() => {
-            var name = window.prompt('请输入任务名称');
-            setTasksList([...tasksList,{id:name,name}])
-        }}>添加一个任务</button>
-      </div>
-    );
-  };
+    }
+}
+
+export default App;
