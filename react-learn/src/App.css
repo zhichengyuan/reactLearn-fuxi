@@ -3,3 +3,23 @@
     width: 200px;
     margin: 0 auto;
 }
+
+.exit {
+    transform-origin: left top;
+}
+
+
+.exit-active{
+    transition: 2s;
+    transform: scale(0);
+}
+
+.enter{
+    transform-origin: left top;
+    transform:scale(0);
+}
+
+.enter-active {
+    transform:scale(1);
+    transition:2s;
+}
