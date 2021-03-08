@@ -1,45 +1,5 @@
-.comp-container{
-    height: 100px;
-    position: relative;
-}
+
 .container{
     width: 200px;
     margin: 0 auto;
 }
-.comp-container .title{
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-.exit-done{
-    display: none;
-}
-
-
-/* .enter-active {
-    opacity: 1;
-    transition: 2s;
-} */
-
-
-
-/* .exit-active {
-    transition: 1s;
-    transform: translateX(-200px);
-    opacity: 0;
-}
-.exit-done{
-    display: none;
-}
-
-.enter,.appear {
-    display: block;
-    opacity: 0;
-    transform: translateX(200px);
-}
-.enter-active,.appear-active {
-    transition: 1s;
-    opacity: 1;
-    transform: translateX(0);
-} */
