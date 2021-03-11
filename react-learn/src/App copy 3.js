@@ -22,16 +22,11 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <Route path="/a" exact  component={A}>
-                    {() => {
-                        return <div>
-                            <h1 style={{color:"red"}}>一定会看到的内容</h1>
-                            <p>dsdsds</p>
-                        </div>
-                    }}
-                </Route>
-                <Route path="/a/b" exact component={B}></Route>
-                <Route component={C}></Route>
+                <Switch>
+                    <Route path="/a" exact  component={A}></Route>
+                    <Route path="/a/b" exact component={B}></Route>
+                    <Route component={C}></Route>
+                </Switch>
             </Router>
             
         )

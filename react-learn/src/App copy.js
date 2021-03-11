@@ -1,27 +1,27 @@
 // import React,{useReducer} from  'react'
 import React from  'react'
-import { SwitchTransition } from 'react-transition-group';
-import FadeTransition from './components/common/FadeTransition'
+import { BrowserRouter as Router,Route} from 'react-router-dom'
+
+function A() {
+    return <h1>组件A</h1>
+}
+function B() {
+    return <h1>组件B</h1>
+}
+function C() {
+    return <h1>组件C</h1>
+}
 
 class App extends React.Component {
-    state ={
-        show:true
-    }
-
     render() {
-        return <div>
-            <SwitchTransition>
-                <FadeTransition timeout={1000} appear key={this.state.show}>
-                    <h1>{this.state.show?'显示':'隐藏'}</h1>
-                </FadeTransition>
-            </SwitchTransition>
+        return (
+            <Router>
+                <Route path="/a" exact  component={A}></Route>
+                <Route path="/a/b" exact sensitive component={B}></Route>
+                <Route component={C}></Route>
+            </Router>
             
-            <button onClick={() => {
-                this.setState({
-                    show:!this.state.show
-                })
-            }}>切换显示状态</button>
-        </div>
+        )
     }
 }
 
