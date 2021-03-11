@@ -20,7 +20,7 @@ export default function Admin() {
             <Route path="/students" exact component={StudentList}/>
             <Route path="/students/add" exact component={StudentAdd}/>
             <Route path="/courses" exact component={CourseList}/>
-            <Route path="/courses/add" exact component={StudentAdd}/>
+            <Route path="/courses/add" exact component={CourseAdd}/>
             
         </Layout>
     )
