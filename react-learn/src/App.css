@@ -1,4 +1,14 @@
 
+.selected {
+    background: #ccc;
+    text-decoration: none;
+    cursor: auto;
+}
+.active{
+    color: red;
+    text-decoration: none;
+    cursor: auto;
+}
 .container{
     width: 200px;
     margin: 0 auto;
