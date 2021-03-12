@@ -14,6 +14,7 @@ export async function getStudents(page = 1,limit = 10) {
  }
 
  export async function searchStudents({page =1,limit=10,key="",sex=-1} ={}) {
+   
     if(key && key !== '') {
         //搜索
         const resp = await fetch(`/api/student/searchStudent?appkey=${appkey}&page=${page}&size=${limit}&search=${key}&sex=${sex}`)

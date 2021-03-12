@@ -26,7 +26,7 @@ export default function StudentContainer() {
         (async function() {
             if(current == '') {
                 return
-            }
+            }     
             const resp = await getStudents(current,limit);
             
             setTotal(resp.cont)
