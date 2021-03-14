@@ -1,59 +1,46 @@
 // import React,{useReducer} from  'react'
 import React from  'react'
-import { BrowserRouter as Router,Route,NavLink,Redirect, Switch} from 'react-router-dom'
+import { BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import './App.css'
+import routeConfig from './RouteConfig'
 
-function A(props) {
-    return <h1>A页</h1>
-}
-
-
-function B(props) {
-    return <h1>B页</h1>
-}
-
-function NavBar() {
+function User({match}) {
     return <div>
-        <p>
-            <NavLink to='/a'
-                activeStyle={{
-                    fontSize:'18px'
-                }}
-                innerRef={node => {console.log(node)}}
-            >去a页</NavLink>
-        </p>
-        <p>
-            <NavLink 
-             activeClassName="selected"
-             to ={{
-                 pathname:'/b',
-                 hash:'#2323',
-                 search:"?name=34&sex=1"
-             }}
-            >去b页</NavLink>
-        </p>
-        <p>
-            <NavLink 
-             to ="/abc"
-            >其他页面</NavLink>
-        </p>
+        <h1>User组件固定的区域</h1>
+        <Link to={routeConfig.user.pay.root}>支付</Link>
+        <Link to={routeConfig.user.update}>更新</Link>
+        <div style={{
+            width:500,
+            height:500,
+            background:"lightblue",
+            margin:"0 auto"
+        }}>
+            {/* User组件变化的区域：根据地址的不同发生变化 */}
+            <Route path={routeConfig.user.update} component={UserUpdate}/> 
+            <Route path={routeConfig.user.pay.root} component={UserPay}/>
+        </div>
     </div>
+}
+
+function UserUpdate(props) {
+    return <h1>
+        修改用户信息
+    </h1>
+}
+
+function UserPay() {
+    return <h1>
+        支付
+    </h1>
 }
 
 class App extends React.Component {
     render() {
         return (
             <div>
-                <Router>
-                    <NavBar></NavBar>
-                    <Switch>
-                        <Route path="/a" component={A}/>
-                        <Route path="/b" component={B}/>
-                        <Redirect 
-                        from='/abc/:id'
-                        to="/a/:id"/>
-                    </Switch>
-                </Router>
+               <Router>
+                   <Route path={routeConfig.user.root} component={User}></Route>
+               </Router>
                 
             </div>
         )
