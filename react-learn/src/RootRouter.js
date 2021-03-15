@@ -6,11 +6,22 @@ import routeConfig from './routeConfig'
  * 根据一个路由配置数组，遍历该数组，得到一组Route组件
  * @param {*} routes 
  */
-function getRoutes(routes) {
-    
+function getRoutes(routes,basePath) {
+    if(!Array.isArray(routes)) {
+        return null;
+    }
     let rt = routes.map((rt,i) => {
-        const {children,...rest} = rt;
-        return <Route key={i} {...rest}/>
+        const {children,name,path,component:Component, ...rest} = rt;
+        let newPath = `${basePath}${path}`;
+        newPath = newPath.replace(/\/\//g,'/')
+        return (<Route key={i} {...rest}
+            path={newPath}
+            render = {values => {
+                return <Component {...values}>
+                        {getRoutes(rt.children,newPath)}
+                    </Component>
+            }}
+        />)
     })
     return <Switch>
         {rt}
@@ -22,11 +33,10 @@ function getRoutes(routes) {
  */
 
 export default function RootRouter() {
-    console.log(getRoutes(routeConfig));
     return (
         <>
             {/* 返回一组Route */}
-            {getRoutes(routeConfig)}
+            {getRoutes(routeConfig,"/")}
         </>
     )
 }
