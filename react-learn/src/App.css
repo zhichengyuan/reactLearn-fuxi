@@ -33,3 +33,7 @@
     transform:scale(1);
     transition:2s;
 }
+a{
+    margin:20px;
+    display: inline-block;
+}

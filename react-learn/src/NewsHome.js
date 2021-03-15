@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Home() {
+export default function NewsHome() {
     return (
         <div>
-            首页
+            新闻首页
         </div>
     )
 }
