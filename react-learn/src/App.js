@@ -1,41 +1,24 @@
 // import React,{useReducer} from  'react'
 import React from  'react'
-import {  Route,Link} from 'react-router-dom'
+import { BrowserRouter as Router} from 'react-router-dom'
+import * as Pages from './page'
 import './App.css'
-import RouteGuard from './RouteGuard'
-
-function Page1() {
-    return <h1>Page1</h1>
-}
-function Page2() {
-    return <h1>Page2</h1>
-}
+import TransitionRoute from './TransitionRoute'
 
 class App extends React.Component {
     render() {
         return (
-            <RouteGuard onBeforeChange={(prev,cur,action,commit,unBlock) => {
-                console.log(`页面想要从${prev.pathname}跳转到${cur.pathname},跳转方式是${action}，允许跳转`)
-                commit(true);
-                unBlock()//取消阻塞，阻塞一次
-            }}
-            onChange={(prevLocation,location,action,unListen) => {
-                console.log(`日志：从${prevLocation.pathname}进入页面${location.pathname},方式${action}`);
-                unListen();//取消监听，仅监听了一次
-            }}
-            >
-                
-                    <ul>
-                        <li>
-                            <Link to='/page1'>页面1</Link>
-                            <Link to='/page2'>页面2</Link>
-                        </li>
-                    </ul>
+            <div className="main">
+                <Router>
+                    <Pages.NavBar></Pages.NavBar>
+                    <div className="page-container">
+                        <TransitionRoute path='/' exact component={Pages.Home}/>
+                        <TransitionRoute path='/news' exact component={Pages.News}/>
+                        <TransitionRoute path='/personal' exact component={Pages.Personal}/>
+                    </div>
                     
-                        <Route path="/page1" component={Page1}/>
-                        <Route path="/page2" component={Page2}/>
-                    
-            </RouteGuard>
+                </Router>
+            </div>
         )
     }
 }
