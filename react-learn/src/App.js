@@ -1,24 +1,41 @@
 // import React,{useReducer} from  'react'
 import React from  'react'
-import { BrowserRouter as Router,} from 'react-router-dom'
-import Link from './BetterLink'
+import {  Route,Link} from 'react-router-dom'
 import './App.css'
-import RootRouter from './RootRouter'
+import RouteGuard from './RouteGuard'
 
+function Page1() {
+    return <h1>Page1</h1>
+}
+function Page2() {
+    return <h1>Page2</h1>
+}
 
 class App extends React.Component {
     render() {
         return (
-            <Router>
-                <nav>
-                    <Link to={{name:'home'}}>首页</Link>
-                    <Link to={{name:'news'}} >新闻页</Link>
-                </nav>
-                <div>
-                    {/* 匹配网站的顶级页面 */}
-                    <RootRouter/>
-                </div>
-            </Router>
+            <RouteGuard onBeforeChange={(prev,cur,action,commit,unBlock) => {
+                console.log(`页面想要从${prev.pathname}跳转到${cur.pathname},跳转方式是${action}，允许跳转`)
+                commit(true);
+                unBlock()//取消阻塞，阻塞一次
+            }}
+            onChange={(prevLocation,location,action,unListen) => {
+                console.log(`日志：从${prevLocation.pathname}进入页面${location.pathname},方式${action}`);
+                unListen();//取消监听，仅监听了一次
+            }}
+            >
+                
+                    <ul>
+                        <li>
+                            <Link to='/page1'>页面1</Link>
+                            <Link to='/page2'>页面2</Link>
+                        </li>
+                    </ul>
+                    
+                        <Route path="/page1" component={Page1}/>
+                        <Route path="/page2" component={Page2}/>
+                    
+            </RouteGuard>
         )
     }
 }
