@@ -3,6 +3,7 @@ const initialState = null;
 
 //eslint-disable-next-line
 export default (state = initialState, { type, payload }) => {
+    // console.log(type)
     switch (type) {
     case SETLOGINUSERTYPE:
         return payload
