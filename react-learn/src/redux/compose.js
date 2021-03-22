@@ -22,15 +22,3 @@ export default function compose(...funcs) {
 
 }
 
-function func1(n) {
-    console.log('func1被调用了',n)
-    return n * 2;
-}
-
-function func2(n) {
-    console.log('func2被调用了',n)
-    return n+n
-}
-var func = compose(func1,func2);
-var result = func(3);//得到12
-console.log(result)
