@@ -1,16 +1,28 @@
 import ActionTypes from './ustils/ActionTypes'
 import isPlainObject from './ustils/isPlaginObject'
 
-
 /**
  * 实现createStore的功能
  */
 //eslint-disable-next-line
-export default function (reducer,defaultState) {
+export default function  createStore(reducer,defaultState,enhanced) {
+    //enhanced表示applymiddleware返回的函数
+    if(typeof defaultState === 'function'){
+        //第二个参数是应用中间件的函数返回值
+        enhanced = defaultState;
+        defaultState = undefined;
+    }
+    if(typeof enhanced === 'function') {
+        //进入applyMiddleWare的处理逻辑
+        return enhanced(createStore)(reducer,defaultState)
+    }
     let currentReducer = reducer,//当前使用的reducer
           currentState = defaultState;//当前仓库中的状态
     const listeners = [];//记录所有的监听器（订阅者）
+
     function dispatch(action) {
+        // console.log(`旧数据：${currentState}`);
+        // console.log(`action ${action}`)
         //验证actiion
         if(!isPlainObject(action)) {
             throw new TypeError('action must be a plain object')
@@ -20,6 +32,7 @@ export default function (reducer,defaultState) {
             throw new TypeError("action must has a property of type")
         }
         currentState = currentReducer(currentState,action);
+        // console.log('新数据',getState())
         for (const listener of listeners) {
             listener();
         }

@@ -1,0 +1,36 @@
+//eslint-disable-next-line
+export default function compose(...funcs) {
+    if(funcs.length === 0) {
+        return args => args;//如果没有要组合的函数则返回的函数原封不动的返回参数
+    }else if(funcs.length === 1) {
+        //要组合的函数只有一个
+        return funcs[0];
+    }
+    return funcs.reduce((a,b) => (...args) => a(b(...args)))
+    // return function(...args){
+    //     let lastReturn = null;//记录上一个函数返回的值，他将作为下一个函数的参数
+    //     for(let i = funcs.length -1 ;i>=0;i--) {
+    //         const func = funcs[i];
+    //         if(i === funcs.length -1) {//数组的最后一项
+    //             lastReturn = func(...args)
+    //         }else {
+    //             lastReturn = func(lastReturn)
+    //         }
+    //     }
+    //     return lastReturn;
+    // }
+
+}
+
+function func1(n) {
+    console.log('func1被调用了',n)
+    return n * 2;
+}
+
+function func2(n) {
+    console.log('func2被调用了',n)
+    return n+n
+}
+var func = compose(func1,func2);
+var result = func(3);//得到12
+console.log(result)

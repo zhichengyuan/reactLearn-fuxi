@@ -1,4 +1,4 @@
-import { createStore,bindActionCreators,applyMiddleware } from '../redux'
+import { createStore,bindActionCreators,applyMiddleware } from 'redux'
 // import { createStore,bindActionCreators } from 'redux'
 import * as usersAction from './action/usersAction'
 import reducer from './reducer'
@@ -55,10 +55,10 @@ const logger2 = store => next => action => {
 
 
 //应用中间件，方式1：
-const store = createStore(reducer,applyMiddleware(logger1,logger2));
+// const store = createStore(reducer,applyMiddleware(logger1,logger2));
 
 //方式2：
-// const store =  applyMiddleware(logger1,logger2)(createStore)(reducer)
+const store =  applyMiddleware(logger1,logger2)(createStore)(reducer)
 
 
 const bindUserAction = bindActionCreators(usersAction,store.dispatch);
