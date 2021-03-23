@@ -1,3 +1,4 @@
+//用于创建仓库，并导出
 import { createStore,applyMiddleware } from 'redux'
 // import { createStore,bindActionCreators } from 'redux'
 import reducer from './reducer'
