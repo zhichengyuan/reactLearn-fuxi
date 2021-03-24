@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //要输出斐波拉契数列的前n位
+        //一个无线循环的斐波拉且数列 1 1 2 3 5 8 13 21
+        var iterator= {
+            a:1, 
+            b:1,
+            curIndex:1,//当前取到的斐波拉且数列的第几了，从1开始
+            next() {
+                if(this.curIndex === 1 || this.curIndex === 2){
+                    this.curIndex++;
+                    return {
+                        value:1,
+                        done:false
+                    };
+                }
+                var c = this.a + this.b;
+                this.curIndex ++;
+                this.a = this.b;
+                this.b = c;
+                return {
+                    value:c,
+                    done:false
+                };
+            }
+        }
+        for(var i = 0;i<10;i++) {
+            console.log(iterator.next().value);
+        }
+    </script>
+</body>
+</html>

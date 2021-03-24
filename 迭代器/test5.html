@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //创建一个用户迭代数组的迭代器
+        function createArrayIterator(arr) {
+            var i = 0;//下标从0开始迭代
+            return {
+                next() {
+                    var obj = {
+                        value:arr[i],
+                        done:i>=arr.length
+                    }
+                    i++;
+                    return obj
+                }
+            }
+        }
+        var iterator = createArrayIterator([2,3,5,2,5,232])
+    </script>
+</body>
+</html>
