@@ -1,15 +1,18 @@
 import store from './index'
-import {createChange} from './action/student/searchCondition'
-import { setIsLoading,fetchStudents } from './action/student/searchResult'
-// import { fetchUser } from './action/usersAction'
+import {increase,decrease,asyncIncrease,asyncDecrease} from './action/counter'
+// import { setIsLoading,fetchStudents } from './action/student/searchResult'
 
-// store.dispatch(fetchUser());//正在加载
-// console.log(store.getState())
-store.dispatch(createChange({
-    key:'1',
-    page:2
-}))
-store.dispatch(setIsLoading(true));
-store.dispatch(fetchStudents(store.getState().students.condition));
+window.increase = function() {
+    store.dispatch(increase());
+}
+window.decrease = function() {
+    store.dispatch(decrease());
+}
+window.asyncIncrease = function() {
+    store.dispatch(asyncIncrease())
+}
+window.asyncDecrease = function() {
+    store.dispatch(asyncDecrease())
+}
 
 
