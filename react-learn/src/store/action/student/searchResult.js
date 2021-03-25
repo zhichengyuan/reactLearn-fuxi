@@ -3,6 +3,13 @@ export const actionTypes = {
     //设置学生查询结果数组和总数
     setStudentsAndTotal:Symbol('setStudentsAndTotal'),
     setIsLoading:Symbol('setIsLoading'),
+    fetchStudents:Symbol('fetchStudents'),
+}
+
+export function fetchStudents() {
+    return {
+        type:actionTypes.fetchStudents
+    }
 }
 
 /**

@@ -1,6 +1,11 @@
 import store from './index'
 import {increase,decrease,asyncIncrease,asyncDecrease} from './action/counter'
+import { fetchStudents } from './action/student/searchResult'
 // import { setIsLoading,fetchStudents } from './action/student/searchResult'
+
+window.fetchStudents = function () {
+    store.dispatch(fetchStudents());
+}
 
 window.increase = function() {
     store.dispatch(increase());

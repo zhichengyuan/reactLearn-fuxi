@@ -1,11 +1,15 @@
-import {takeEvery} from 'redux-saga/effects'
-import { actionTypes } from '../action/counter'
+import {takeEvery,delay,put} from 'redux-saga/effects'
+import { actionTypes,increase,decrease } from '../action/counter'
 
 function* asyncIncrease() {
-        console.log('触发了asyncIncrease')
+        var result =  yield delay(2000,12);
+        console.log('触发了asyncIncrease',result);
+        yield put(increase());
 }
 function* asyncDecrease() {
+        yield delay(2000);
         console.log('触发了asyncDecrease');
+        yield put(decrease());
 }
 //eslint-disable-next-line
 export default function* () {
